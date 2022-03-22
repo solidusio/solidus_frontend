@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus'
-  s.version     = Spree.solidus_version
+  s.version     = '3.2.0.alpha'
   s.summary     = 'Full-stack e-commerce framework for Ruby on Rails.'
   s.description = 'Solidus is an open source e-commerce framework for Ruby on Rails.'
 
