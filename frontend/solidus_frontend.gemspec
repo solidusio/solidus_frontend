@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_frontend'
-  s.version     = Spree.solidus_version
+  s.version     = '3.2.0.alpha'
   s.summary     = 'Cart and storefront for the Solidus e-commerce project.'
   s.description = s.summary
 
