@@ -2,13 +2,7 @@
 
 ROOT = File.expand_path('..', __dir__)
 
-LIBS = %w[
-  api
-  backend
-  core
-  frontend
-  sample
-]
+LIBS = %w[frontend]
 
 # Is it a spec file or an RSpec option?
 is_spec = ->(path) {
