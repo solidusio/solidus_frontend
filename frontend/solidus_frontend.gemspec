@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../core/lib/spree/core/version.rb'
-
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_frontend'
