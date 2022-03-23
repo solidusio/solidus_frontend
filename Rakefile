@@ -20,13 +20,13 @@ def subproject_task(project, task, title: project, task_name: nil)
 end
 
 %w[spec db:drop db:create db:migrate db:reset].each do |task|
-  %w(api backend core frontend sample).each do |project|
+  %w(frontend).each do |project|
     desc "Run specs for #{project}" if task == 'spec'
     subproject_task(project, task)
   end
 
   desc "Run rake #{task} for each Solidus engine"
-  task task => %w(api backend core frontend sample).map { |p| "#{task}:#{p}" }
+  task task => %w(frontend).map { |p| "#{task}:#{p}" }
 end
 
 desc "Run backend JS specs"
@@ -44,7 +44,7 @@ task :clean do
   rm_rf "sandbox"
   rm_rf "pkg"
 
-  %w(api backend core frontend sample).each do |gem_name|
+  %w(frontend).each do |gem_name|
     print_title(gem_name)
     rm_f  "#{gem_name}/Gemfile.lock"
     rm_rf "#{gem_name}/pkg"
@@ -59,7 +59,7 @@ namespace :gem do
   end
 
   def for_each_gem
-    %w(core api backend frontend sample).each do |gem_name|
+    %w(frontend).each do |gem_name|
       print_title(gem_name)
       yield "pkg/solidus_#{gem_name}-#{version}.gem"
     end
@@ -72,7 +72,7 @@ namespace :gem do
     pkgdir = File.expand_path('pkg', __dir__)
     FileUtils.mkdir_p pkgdir
 
-    %w(core api backend frontend sample).each do |gem_name|
+    %w(frontend).each do |gem_name|
       Dir.chdir(gem_name) do
         sh "gem build solidus_#{gem_name}.gemspec"
         mv "solidus_#{gem_name}-#{version}.gem", pkgdir
