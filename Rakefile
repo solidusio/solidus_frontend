@@ -63,10 +63,6 @@ namespace :gem do
       sh "gem build solidus_#{gem_name}.gemspec"
       mv "solidus_#{gem_name}-#{version}.gem", pkgdir
     end
-
-    print_title
-    sh "gem build solidus.gemspec"
-    mv "solidus-#{version}.gem", pkgdir
   end
 
   desc "Install all solidus gems"
