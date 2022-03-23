@@ -29,11 +29,7 @@ end
   task task => %w(frontend).map { |p| "#{task}:#{p}" }
 end
 
-desc "Run backend JS specs"
-subproject_task("backend", "spec:js", title: "backend JS", task_name: "spec:backend:js")
-
-# Add backend JS specs to `rake spec` dependencies
-task spec: 'spec:backend:js'
+task :spec
 
 task test: :spec
 task test_app: 'db:reset'
