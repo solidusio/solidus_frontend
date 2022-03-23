@@ -52,12 +52,6 @@ namespace :gem do
     Spree.solidus_version
   end
 
-  def for_each_gem
-    gem_name = 'frontend'
-    print_title(gem_name)
-    yield "pkg/solidus_#{gem_name}-#{version}.gem"
-  end
-
   desc "Build all solidus gems"
   task :build do
     pkgdir = File.expand_path('pkg', __dir__)
@@ -77,10 +71,12 @@ namespace :gem do
 
   desc "Install all solidus gems"
   task install: :build do
-    for_each_gem do |gem_path|
-      Bundler.with_clean_env do
-        sh "gem install #{gem_path}"
-      end
+    gem_name = 'frontend'
+    print_title(gem_name)
+    gem_path = "pkg/solidus_#{gem_name}-#{version}.gem"
+
+    Bundler.with_clean_env do
+      sh "gem install #{gem_path}"
     end
   end
 
@@ -88,8 +84,9 @@ namespace :gem do
   task release: :build do
     sh "git tag -a -m \"Version #{version}\" v#{version}"
 
-    for_each_gem do |gem_path|
-      sh "gem push '#{gem_path}'"
-    end
+    gem_name = 'frontend'
+    print_title(gem_name)
+    gem_path = "pkg/solidus_#{gem_name}-#{version}.gem"
+    sh "gem push '#{gem_path}'"
   end
 end
