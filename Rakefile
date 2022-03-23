@@ -32,8 +32,7 @@ end
 
 namespace :gem do
   def version
-    require_relative 'core/lib/spree/core/version'
-    Spree.solidus_version
+    '3.2.0.alpha'
   end
 
   desc "Build all solidus gems"
