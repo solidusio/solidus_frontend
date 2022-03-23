@@ -1,49 +1,33 @@
 # frozen_string_literal: true
 
 require 'bundler'
+require 'rubygems'
+require 'rake'
+require 'rake/testtask'
+require 'rspec/core/rake_task'
+require 'spree/testing_support/dummy_app/rake_tasks'
 
+RSpec::Core::RakeTask.new
 task default: :spec
+
+DummyApp::RakeTasks.new(
+  gem_root: File.expand_path(__dir__),
+  lib_name: 'solidus_frontend'
+)
+
+task test: :spec
+task test_app: 'db:reset'
 
 def print_title(gem_name = '')
   title = ["Solidus", gem_name].join(' ').strip
   puts "\n#{'-' * title.size}\n#{title}\n#{'-' * title.size}"
 end
 
-def subproject_task(project, task, title: project, task_name: nil)
-  task_name ||= "#{task}:#{project}"
-  task task_name do
-    print_title(title)
-    Dir.chdir("#{File.dirname(__FILE__)}/#{project}") do
-      sh "rake #{task}"
-    end
-  end
-end
-
-%w[spec db:drop db:create db:migrate db:reset].each do |task|
-  project = 'frontend'
-  desc "Run specs for #{project}" if task == 'spec'
-  subproject_task(project, task)
-
-  desc "Run rake #{task} for each Solidus engine"
-  task task => "#{task}:frontend"
-end
-
-task :spec
-
-task test: :spec
-task test_app: 'db:reset'
-
 desc "clean the whole repository by removing all the generated files"
 task :clean do
   rm_f  "Gemfile.lock"
   rm_rf "sandbox"
   rm_rf "pkg"
-
-  gem_name = 'frontend'
-  print_title(gem_name)
-  rm_f  "#{gem_name}/Gemfile.lock"
-  rm_rf "#{gem_name}/pkg"
-  rm_rf "#{gem_name}/spec/dummy"
 end
 
 namespace :gem do
@@ -59,10 +43,8 @@ namespace :gem do
 
     gem_name = 'frontend'
 
-    Dir.chdir(gem_name) do
-      sh "gem build solidus_#{gem_name}.gemspec"
-      mv "solidus_#{gem_name}-#{version}.gem", pkgdir
-    end
+    sh "gem build solidus_#{gem_name}.gemspec"
+    mv "solidus_#{gem_name}-#{version}.gem", pkgdir
   end
 
   desc "Install all solidus gems"
