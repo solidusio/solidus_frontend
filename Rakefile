@@ -56,8 +56,6 @@ namespace :gem do
     gem_name = 'frontend'
     print_title(gem_name)
     yield "pkg/solidus_#{gem_name}-#{version}.gem"
-    print_title
-    yield "pkg/solidus-#{version}.gem"
   end
 
   desc "Build all solidus gems"
