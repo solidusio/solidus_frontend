@@ -32,5 +32,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'sassc-rails'
   s.add_dependency 'truncate_html', '~> 0.9', '>= 0.9.2'
 
+  s.add_development_dependency 'solidus'
   s.add_development_dependency 'capybara-accessible'
 end
