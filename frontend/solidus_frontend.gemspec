@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative '../core/lib/spree/core/version.rb'
+require_relative 'lib/spree/frontend/version.rb'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_frontend'
-  s.version     = Spree.solidus_version
+  s.version     = Spree::Frontend.version
   s.summary     = 'Cart and storefront for the Solidus e-commerce project.'
   s.description = s.summary
 
