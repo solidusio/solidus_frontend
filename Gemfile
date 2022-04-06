@@ -2,6 +2,9 @@
 
 source 'https://rubygems.org'
 
+gem 'solidus_api', github: 'solidusio/solidus', branch: 'master'
+gem 'solidus_core', github: 'solidusio/solidus', branch: 'master'
+
 group :backend, :frontend, :core, :api do
   gemspec require: false
 
