@@ -25,7 +25,7 @@ class Project
     @weight = weight
   end
 
-  ALL = [new('frontend', weight: 95)].freeze
+  ALL = [new('solidus_frontend', weight: 95)].freeze
 
   # Install subproject
   #
