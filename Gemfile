@@ -12,7 +12,7 @@ group :backend, :frontend, :core, :api do
   gem 'solidus_core',
     github: 'solidusio/solidus', ref: '2762219', glob: '**/*.gemspec'
 
-  gem 'solidus_frontend', path: 'frontend/'
+  gem 'solidus_frontend', path: './'
 
   gem 'solidus_sample',
     github: 'solidusio/solidus', ref: '2762219', glob: '**/*.gemspec'
