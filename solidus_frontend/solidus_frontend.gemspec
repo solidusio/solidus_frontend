@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ['George Mendoza']
   spec.email = 'gsmendoza@gmail.com'
 
-  spec.summary = 'TODO: Write a short summary, because RubyGems requires one.'
-  spec.description = 'TODO: Write a longer description or delete this line.'
+  spec.summary     = 'Cart and storefront for the Solidus e-commerce project.'
+  spec.description = spec.summary
   spec.homepage = 'https://github.com/gsmendoza/solidus_frontend#readme'
   spec.license = 'BSD-3-Clause'
 
