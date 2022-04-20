@@ -49,8 +49,7 @@ gem 'with_model', require: false
 gem 'rails-controller-testing', require: false
 gem 'puma', require: false
 
-# Ensure the requirement is also updated in core/lib/spree/testing_support/factory_bot.rb
-gem 'factory_bot_rails', '>= 4.8', require: false
+gem 'factory_bot_rails', require: false
 
 gem 'capybara', '~> 3.13', require: false
 gem 'capybara-screenshot', '>= 1.0.18', require: false
@@ -63,9 +62,9 @@ group :utils do
   gem 'pry'
   gem 'launchy', require: false
   gem 'i18n-tasks', '~> 0.9', require: false
-  gem 'rubocop', '~> 0.75.0', require: false
-  gem 'rubocop-performance', '~> 1.4', require: false
-  gem 'rubocop-rails', '~> 2.3', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
   gem 'gem-release', require: false
 end
 
