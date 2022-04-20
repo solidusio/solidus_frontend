@@ -6,9 +6,7 @@ group :backend, :frontend, :core, :api do
   gemspec require: false
 
   gem 'solidus_api', github: 'solidusio/solidus', glob: '**/*.gemspec'
-  gem 'solidus_backend', github: 'solidusio/solidus', glob: '**/*.gemspec'
   gem 'solidus_core', github: 'solidusio/solidus', glob: '**/*.gemspec'
-  gem 'solidus_sample', github: 'solidusio/solidus', glob: '**/*.gemspec'
 
   # rubocop:disable Bundler/DuplicatedGem
   if ENV['RAILS_VERSION'] == 'master'
