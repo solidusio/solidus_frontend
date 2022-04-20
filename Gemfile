@@ -5,10 +5,10 @@ source 'https://rubygems.org'
 gemspec require: false
 
 gem 'solidus_api',
-  git: 'https://github.com/gsmendoza/solidus', ref: '2762219', glob: '**/*.gemspec'
+  git: 'https://github.com/solidusio/solidus', ref: '2762219', glob: '**/*.gemspec'
 
 gem 'solidus_core',
-  git: 'https://github.com/gsmendoza/solidus', ref: '2762219', glob: '**/*.gemspec'
+  git: 'https://github.com/solidusio/solidus', ref: '2762219', glob: '**/*.gemspec'
 
 # rubocop:disable Bundler/DuplicatedGem
 if ENV['RAILS_VERSION'] == 'master'
