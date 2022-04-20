@@ -63,11 +63,6 @@ group :frontend do
   gem 'generator_spec'
 end
 
-group :backend do
-  gem 'teaspoon', github: 'jejacks0n/teaspoon', require: false
-  gem 'teaspoon-mocha', github: 'jejacks0n/teaspoon', require: false
-end
-
 group :utils do
   gem 'pry'
   gem 'launchy', require: false
