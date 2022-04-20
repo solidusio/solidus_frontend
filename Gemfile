@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 
 group :backend, :frontend, :core, :api do
+  gemspec require: false
+
   gem 'solidus_api',
     github: 'solidusio/solidus', ref: '2762219', glob: '**/*.gemspec'
 
@@ -11,8 +13,6 @@ group :backend, :frontend, :core, :api do
 
   gem 'solidus_core',
     github: 'solidusio/solidus', ref: '2762219', glob: '**/*.gemspec'
-
-  gem 'solidus_frontend', path: './'
 
   gem 'solidus_sample',
     github: 'solidusio/solidus', ref: '2762219', glob: '**/*.gemspec'
