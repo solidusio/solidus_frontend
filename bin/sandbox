@@ -49,12 +49,16 @@ fi
 
 cd ./sandbox
 cat <<RUBY >> Gemfile
-gem 'solidus', github: 'solidusio/solidus', branch: '$BRANCH'
+gem 'solidus_api', github: 'solidusio/solidus', branch: '$BRANCH', glob: '**/*.gemspec'
+gem 'solidus_backend', github: 'solidusio/solidus', branch: '$BRANCH', glob: '**/*.gemspec'
+gem 'solidus_core', github: 'solidusio/solidus', branch: '$BRANCH', glob: '**/*.gemspec'
+gem 'solidus_sample', github: 'solidusio/solidus', branch: '$BRANCH', glob: '**/*.gemspec'
+
+gem '$extension_name', path: '..'
+
 gem 'solidus_auth_devise', '>= 2.1.0'
 gem 'rails-i18n'
 gem 'solidus_i18n'
-
-gem '$extension_name', path: '..'
 
 group :test, :development do
   platforms :mri do
