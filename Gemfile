@@ -9,13 +9,10 @@ branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
 gem 'solidus_api', github: 'solidusio/solidus', glob: '**/*.gemspec', branch: branch
 gem 'solidus_core', github: 'solidusio/solidus', glob: '**/*.gemspec', branch: branch
 
-# rubocop:disable Bundler/DuplicatedGem
-if ENV['RAILS_VERSION'] == 'master'
-  gem 'rails', github: 'rails', require: false
-else
-  gem 'rails', ENV['RAILS_VERSION'] || '~> 7.0.2', require: false
-end
-# rubocop:enable Bundler/DuplicatedGem
+# Needed to help Bundler figure out how to resolve dependencies,
+# otherwise it takes forever to resolve them.
+# See https://github.com/bundler/bundler/issues/6677
+gem 'rails', '>0.a'
 
 # Temporarily locking sprockets to v3.x
 # see https://github.com/solidusio/solidus/issues/3374
