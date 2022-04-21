@@ -28,11 +28,6 @@ else
   gem 'sqlite3'
 end
 
-platforms :jruby do
-  gem 'jruby-openssl', require: false
-  gem 'activerecord-jdbcsqlite3-adapter', require: false
-end
-
 gem 'database_cleaner', '~> 1.3', require: false
 gem 'rspec-activemodel-mocks', '~> 1.1', require: false
 gem 'rspec-rails', '~> 4.0.1', require: false
