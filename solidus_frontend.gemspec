@@ -26,8 +26,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.5.0'
   s.required_rubygems_version = '>= 1.8.23'
 
-  s.add_dependency 'solidus_api', s.version
-  s.add_dependency 'solidus_core', s.version
+  s.add_dependency 'solidus_api', '>= 3.2.0.alpha'
+  s.add_dependency 'solidus_core', '>= 3.2.0.alpha'
 
   s.add_dependency 'canonical-rails', '~> 0.2.10'
   s.add_dependency 'font-awesome-rails', '~> 4.0'
