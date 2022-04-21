@@ -3,8 +3,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gemspec require: false
-
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
 gem 'solidus_api', github: 'solidusio/solidus', glob: '**/*.gemspec', branch: branch
 gem 'solidus_core', github: 'solidusio/solidus', glob: '**/*.gemspec', branch: branch
@@ -27,6 +25,8 @@ when 'postgresql'
 else
   gem 'sqlite3'
 end
+
+gemspec
 
 gem 'database_cleaner', '~> 1.3', require: false
 gem 'rspec-activemodel-mocks', '~> 1.1', require: false
