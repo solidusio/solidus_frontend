@@ -36,4 +36,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'capybara-accessible'
   s.add_development_dependency 'solidus_dev_support', '~> 2.5'
+  s.add_development_dependency 'rspec-activemodel-mocks', '~> 1.1'
+  s.add_development_dependency 'rails-controller-testing'
+  s.add_development_dependency 'generator_spec'
 end

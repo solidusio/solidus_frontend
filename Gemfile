@@ -28,9 +28,5 @@ end
 
 gemspec
 
-gem 'rspec-activemodel-mocks', '~> 1.1', require: false
-gem 'rails-controller-testing', require: false
-gem 'generator_spec'
-
 custom_gemfile = File.expand_path('Gemfile-custom', __dir__)
 eval File.read(custom_gemfile), nil, custom_gemfile, 0 if File.exist?(custom_gemfile)
