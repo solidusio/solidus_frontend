@@ -29,21 +29,8 @@ end
 gemspec
 
 gem 'rspec-activemodel-mocks', '~> 1.1', require: false
-gem 'simplecov', require: false
 gem 'rails-controller-testing', require: false
-
-gem 'selenium-webdriver', require: false
-
 gem 'generator_spec'
-
-group :utils do
-  gem 'pry'
-  gem 'launchy', require: false
-  gem 'i18n-tasks', '~> 0.9', require: false
-end
-
-# Documentation
-gem 'yard', require: false, group: :docs
 
 custom_gemfile = File.expand_path('Gemfile-custom', __dir__)
 eval File.read(custom_gemfile), nil, custom_gemfile, 0 if File.exist?(custom_gemfile)
