@@ -19,17 +19,13 @@ gem 'rails', '>0.a'
 # and https://github.com/rails/sprockets-rails/issues/369
 gem 'sprockets', '~> 3'
 
-platforms :ruby do
-  if /mysql/.match?(ENV['DB']) || ENV['DB_ALL']
-    gem 'mysql2', '~> 0.5.0', require: false
-  end
-  if /postgres/.match?(ENV['DB']) || ENV['DB_ALL']
-    gem 'pg', '~> 1.0', require: false
-  end
-  if ENV['DB_ALL'] || !/mysql|postgres/.match?(ENV['DB'])
-    gem 'sqlite3', require: false
-    gem 'fast_sqlite', require: false
-  end
+case ENV['DB']
+when 'mysql'
+  gem 'mysql2'
+when 'postgresql'
+  gem 'pg'
+else
+  gem 'sqlite3'
 end
 
 platforms :jruby do
