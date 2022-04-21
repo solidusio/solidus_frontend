@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec require: false
 
-gem 'solidus_api', github: 'solidusio/solidus', glob: '**/*.gemspec'
-gem 'solidus_core', github: 'solidusio/solidus', glob: '**/*.gemspec'
+branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
+gem 'solidus_api', github: 'solidusio/solidus', glob: '**/*.gemspec', branch: branch
+gem 'solidus_core', github: 'solidusio/solidus', glob: '**/*.gemspec', branch: branch
 
 # rubocop:disable Bundler/DuplicatedGem
 if ENV['RAILS_VERSION'] == 'master'
