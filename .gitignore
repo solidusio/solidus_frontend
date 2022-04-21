@@ -9,7 +9,7 @@
 .ruby-version
 doc
 Gemfile.lock
-Gemfile-custom
+Gemfile-local
 log
 pkg
 /sandbox
