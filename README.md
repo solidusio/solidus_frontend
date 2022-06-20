@@ -2,6 +2,12 @@
 
 Frontend contains controllers and views implementing a storefront and cart for Solidus.
 
+## Warning
+
+For new Solidus apps, we recommend that you use
+[SolidusStarterFrontend](https://github.com/solidusio/solidus_starter_frontend)
+instead.
+
 ## Override views
 
 In order to customize a view you should copy the file into your host app. Using Deface is not
@@ -33,7 +39,7 @@ This will copy all views whose directory or filename contains the string "produc
 
 After upgrading Solidus to a new version run the generator again and follow on screen instructions.
 
-## Testing
+## Contributing
 
 Run the tests
 
