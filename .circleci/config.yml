@@ -9,6 +9,13 @@ orbs:
   # or goes EOL.
   solidusio_extensions: solidusio/extensions@volatile
 
+commands:
+  libvips:
+    steps:
+      - run:
+          name: Install libvips
+          command: sudo apt-get install -y libvips
+
 jobs:
   run-specs-with-postgres:
     executor: solidusio_extensions/postgres
@@ -16,6 +23,7 @@ jobs:
       - checkout
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
+      - libvips
       - solidusio_extensions/run-tests-solidus-master
       - solidusio_extensions/store-test-results
   run-specs-with-mysql:
@@ -24,6 +32,7 @@ jobs:
       - checkout
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
+      - libvips
       - solidusio_extensions/run-tests-solidus-master
       - solidusio_extensions/store-test-results
   lint-code:
