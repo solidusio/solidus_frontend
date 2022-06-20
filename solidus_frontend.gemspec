@@ -6,7 +6,14 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_frontend'
   s.version     = Spree::Frontend.version
-  s.summary     = 'Cart and storefront for the Solidus e-commerce project.'
+
+  s.summary     = <<~SUMMARY
+    Legacy cart and storefront for the Solidus e-commerce project.
+    For new Solidus apps, we recommend that you use
+    [SolidusStarterFrontend](https://github.com/solidusio/solidus_starter_frontend)
+    instead.
+  SUMMARY
+
   s.description = s.summary
 
   s.author      = 'Solidus Team'
