@@ -39,7 +39,7 @@ This will copy all views whose directory or filename contains the string "produc
 
 After upgrading Solidus to a new version run the generator again and follow on screen instructions.
 
-## Developing Solidus
+## Developing Solidus Frontend
 
 * Clone the Git repo
 
@@ -93,11 +93,11 @@ Running tests:
 
 ```bash
 # sqlite
-docker-compose exec app bin/rspec
+docker-compose exec app bundle exec rspec
 # postgres
-docker-compose exec app env DB=postgres bin/rspec
+docker-compose exec app env DB=postgres bundle exec rspec
 # mysql
-docker-compose exec app env DB=mysql bin/rspec
+docker-compose exec app env DB=mysql bundle exec rspec
 ```
 
 Accessing the databases:
@@ -176,39 +176,16 @@ We use CircleCI to run the tests for Solidus as well as all incoming pull
 requests. All pull requests must pass to be merged.
 
 You can see the build statuses at
-[https://circleci.com/gh/solidusio/solidus](https://circleci.com/gh/solidusio/solidus).
+[https://circleci.com/gh/solidusio/solidus_frontend](https://circleci.com/gh/solidusio/solidus_frontend).
 
 #### Run all tests
 
 [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home) is
-required to run the frontend and backend test suites.
+required to run the frontend suites.
 
-To execute all of the test specs, run the `bin/build` script at the root of the Solidus project:
-
-```bash
-createuser --superuser --echo postgres # only the first time
-bin/build
-```
-
-The `bin/build` script runs using PostgreSQL by default, but it can be overridden by setting the DB environment variable to `DB=sqlite` or `DB=mysql`. For example:
+Run the tests
 
 ```bash
-env DB=mysql bin/build
-```
-
-If the command fails with MySQL related errors you can try creating a user with this command:
-
-```bash
-# Creates a user with the same name as the current user and no restrictions.
-mysql --user="root" --execute="CREATE USER '$USER'@'localhost'; GRANT ALL PRIVILEGES ON * . * TO '$USER'@'localhost';"
-```
-
-#### Run an individual test suite
-
-Each gem contains its own series of tests. To run the tests for the core project:
-
-```bash
-cd core
 bundle exec rspec
 ```
 
