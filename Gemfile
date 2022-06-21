@@ -9,10 +9,7 @@ git "https://github.com/solidusio/solidus.git", branch: branch do
   gem 'solidus_core'
 end
 
-# Needed to help Bundler figure out how to resolve dependencies,
-# otherwise it takes forever to resolve them.
-# See https://github.com/bundler/bundler/issues/6677
-gem 'rails', '>0.a'
+gem 'rails', ENV.fetch('RAILS_VERSION', nil)
 
 # Temporarily locking sprockets to v3.x
 # see https://github.com/solidusio/solidus/issues/3374
