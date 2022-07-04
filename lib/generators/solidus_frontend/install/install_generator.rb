@@ -9,12 +9,15 @@ module SolidusFrontend
         template 'initializer.rb', 'config/initializers/solidus_frontend.rb'
       end
 
-      def add_javascripts
-        append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/solidus_frontend\n"
-      end
+      def setup_assets
+        empty_directory 'app/assets/images'
 
-      def add_stylesheets
-        inject_into_file 'vendor/assets/stylesheets/spree/frontend/all.css', " *= require spree/frontend/solidus_frontend\n", before: %r{\*/}, verbose: true # rubocop:disable Layout/LineLength
+        %w{javascripts stylesheets images}.each do |path|
+          empty_directory "vendor/assets/#{path}/spree/frontend"
+        end
+
+        template "vendor/assets/javascripts/spree/frontend/all.js"
+        template "vendor/assets/stylesheets/spree/frontend/all.css"
       end
     end
   end

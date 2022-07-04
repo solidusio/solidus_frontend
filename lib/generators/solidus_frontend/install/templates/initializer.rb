@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
-SolidusFrontend.configure do |config|
-  # TODO: Remember to change this with the actual preferences you have implemented!
-  # config.sample_preference = 'sample_value'
+Spree.config do |config|
+  # Frontend:
+
+  # Custom logo for the frontend
+  # config.logo = "logo/solidus.svg"
+
+  # Template to use when rendering layout
+  # config.layout = "spree/layouts/spree_application"
+end
+
+Spree::Frontend::Config.configure do |config|
+  config.locale = 'en'
 end
