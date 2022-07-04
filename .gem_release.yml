@@ -1,0 +1,5 @@
+bump:
+  recurse: false
+  file: 'lib/spree/frontend/version.rb'
+  message: Bump SolidusFrontend to %{version}
+  tag: true

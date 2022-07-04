@@ -1,0 +1,59 @@
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.3
+
+  # Always take the latest version of the orb, this allows us to
+  # run specs against Solidus supported versions only without the need
+  # to change this configuration every time a Solidus version is released
+  # or goes EOL.
+  solidusio_extensions: solidusio/extensions@volatile
+
+commands:
+  libvips:
+    steps:
+      - run:
+          name: Install libvips
+          command: sudo apt-get install -y libvips
+
+jobs:
+  run-specs-with-postgres:
+    executor: solidusio_extensions/postgres
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - libvips
+      - solidusio_extensions/run-tests-solidus-master
+      - solidusio_extensions/store-test-results
+  run-specs-with-mysql:
+    executor: solidusio_extensions/mysql
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - libvips
+      - solidusio_extensions/run-tests-solidus-master
+      - solidusio_extensions/store-test-results
+  lint-code:
+    executor: solidusio_extensions/sqlite-memory
+    steps:
+      - solidusio_extensions/lint-code
+
+workflows:
+  "Run specs on supported Solidus versions":
+    jobs:
+      - run-specs-with-postgres
+      - run-specs-with-mysql
+
+  "Weekly run specs against master":
+    triggers:
+      - schedule:
+          cron: "0 0 * * 4" # every Thursday
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - run-specs-with-postgres
+      - run-specs-with-mysql
