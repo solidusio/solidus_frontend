@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
-Spree.config do |config|
-  # Frontend:
+# Warning: frontend is still part of the Solidus meta-gem. Make sure to enable
+# these configurations only if they haven't been enabled in the `spree.rb`
+# initializer.
 
-  # Custom logo for the frontend
-  # config.logo = "logo/solidus.svg"
+# Spree.config do |config|
+#   # Frontend:
 
-  # Template to use when rendering layout
-  # config.layout = "spree/layouts/spree_application"
-end
+#   Custom logo for the frontend
+#   config.logo = "logo/solidus.svg"
 
-Spree::Frontend::Config.configure do |config|
-  config.locale = 'en'
-end
+#   Template to use when rendering layout
+#   config.layout = "spree/layouts/spree_application"
+# end
+
+# Spree::Frontend::Config.configure do |config|
+#   config.locale = 'en'
+# end
