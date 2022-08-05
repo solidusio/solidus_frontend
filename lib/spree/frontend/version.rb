@@ -8,10 +8,6 @@ module Spree
       VERSION
     end
 
-    def self.minor_version
-      '3.0'
-    end
-
     def self.gem_version
       Gem::Version.new(version)
     end
