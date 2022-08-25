@@ -21,7 +21,7 @@ describe Spree::ProductsController, type: :controller do
   it "should provide the current user to the searcher class" do
     user = mock_model(Spree.user_class, last_incomplete_spree_order: nil, spree_api_key: 'fake')
     allow(controller).to receive_messages spree_current_user: user
-    expect_any_instance_of(Spree::Config.searcher_class).to receive(:current_user=).with(user)
+    expect_any_instance_of(Spree::Frontend::Config.searcher_class).to receive(:current_user=).with(user)
     get :index
     expect(response.status).to eq(200)
   end

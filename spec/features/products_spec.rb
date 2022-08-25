@@ -221,7 +221,7 @@ describe "Visiting Products", type: :feature, inaccessible: true do
     visit spree.root_path
 
     expect(page.all('ul.product-listing li').size).to eq(9)
-    stub_spree_preferences(show_products_without_price: false)
+    stub_spree_preferences(Spree::Frontend::Config, show_products_without_price: false)
     stub_spree_preferences(currency: "CAN")
     visit spree.root_path
     expect(page.all('ul.product-listing li').size).to eq(0)
@@ -252,7 +252,7 @@ describe "Visiting Products", type: :feature, inaccessible: true do
   it "should be able to display products priced between 15 and 18 dollars across multiple pages" do
     visit spree.root_path
 
-    stub_spree_preferences(products_per_page: 2)
+    stub_spree_preferences(Spree::Frontend::Config, products_per_page: 2)
     within(:css, '#taxonomies') { click_link "Ruby on Rails" }
     check "Price_Range_$15.00_-_$18.00"
     within(:css, '#sidebar_products_search') { click_button "Search" }
@@ -298,7 +298,7 @@ describe "Visiting Products", type: :feature, inaccessible: true do
 
     product = FactoryBot.create(:base_product, description: nil, name: 'Sample', price: '19.99')
     stub_spree_preferences(currency: "CAN")
-    stub_spree_preferences(show_products_without_price: true)
+    stub_spree_preferences(Spree::Frontend::Config, show_products_without_price: true)
     visit spree.product_path(product)
     expect(page).to have_content "This product is not available in the selected currency."
     expect(page).not_to have_content "add-to-cart-button"
@@ -309,7 +309,7 @@ describe "Visiting Products", type: :feature, inaccessible: true do
 
     product = FactoryBot.create(:base_product, description: nil, name: 'Sample', price: '19.99')
     stub_spree_preferences(currency: "CAN")
-    stub_spree_preferences(show_products_without_price: true)
+    stub_spree_preferences(Spree::Frontend::Config, show_products_without_price: true)
     visit spree.products_path
     expect(page).to have_content(product.name)
   end

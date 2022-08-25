@@ -12,3 +12,4 @@ require 'kaminari'
 
 require 'spree/frontend/middleware/seo_assist'
 require 'spree/frontend/engine'
+require 'spree/frontend/controller_helpers/search'

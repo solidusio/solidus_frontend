@@ -4,6 +4,7 @@ module Spree
   class StoreController < Spree::BaseController
     include Spree::Core::ControllerHelpers::Pricing
     include Spree::Core::ControllerHelpers::Order
+    include Spree::Frontend::ControllerHelpers::Search
 
     def unauthorized
       render 'spree/shared/unauthorized', layout: Spree::Config[:layout], status: 401
