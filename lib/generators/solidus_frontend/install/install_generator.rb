@@ -5,6 +5,10 @@ module SolidusFrontend
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('templates', __dir__)
 
+      class_option :auto_accept,
+                   type: :boolean,
+                   default: false
+
       def copy_initializer
         template 'initializer.rb', 'config/initializers/solidus_frontend.rb'
       end
@@ -18,6 +22,25 @@ module SolidusFrontend
 
         template "vendor/assets/javascripts/spree/frontend/all.js"
         template "vendor/assets/stylesheets/spree/frontend/all.css"
+      end
+
+      def install_solidus_bolt
+        return if ENV['SKIP_SOLIDUS_BOLT'] || !(options[:auto_accept] || yes?(<<~MSG))
+          Would you like to add bolt (https://www.bolt.com) as a default payment method?
+
+          If you answer yes, solidus_bolt (https://github.com/solidusio/solidus_bolt)
+          will be added to the installation (y/n):
+        MSG
+
+        gem 'solidus_bolt'
+        bundle_cleanly { `bundle` }
+        generate 'solidus_bolt:install --auto-run-migrations'
+      end
+
+      private
+
+      def bundle_cleanly(&block)
+        Bundler.respond_to?(:with_unbundled_env) ? Bundler.with_unbundled_env(&block) : Bundler.with_clean_env(&block)
       end
     end
   end
