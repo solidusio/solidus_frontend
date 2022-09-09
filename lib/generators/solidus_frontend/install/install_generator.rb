@@ -13,6 +13,19 @@ module SolidusFrontend
         template 'initializer.rb', 'config/initializers/solidus_frontend.rb'
       end
 
+      def robots_directives
+        append_file "public/robots.txt", <<-ROBOTS.strip_heredoc
+          User-agent: *
+          Disallow: /checkout
+          Disallow: /cart
+          Disallow: /orders
+          Disallow: /user
+          Disallow: /account
+          Disallow: /api
+          Disallow: /password
+        ROBOTS
+      end
+
       def setup_assets
         empty_directory 'app/assets/images'
 
