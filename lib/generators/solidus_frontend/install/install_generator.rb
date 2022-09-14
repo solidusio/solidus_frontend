@@ -25,7 +25,7 @@ module SolidusFrontend
       end
 
       def install_solidus_bolt
-        return if ENV['SKIP_SOLIDUS_BOLT'] || !(options[:auto_accept] || yes?(<<~MSG))
+        return if ENV['SKIP_SOLIDUS_BOLT'] || !File.exist?('Gemfile') || !(options[:auto_accept] || yes?(<<~MSG))
           Would you like to add bolt (https://www.bolt.com) as a default payment method?
 
           If you answer yes, solidus_bolt (https://github.com/solidusio/solidus_bolt)
