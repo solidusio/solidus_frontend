@@ -9,6 +9,10 @@ module SolidusFrontend
                    type: :boolean,
                    default: false
 
+      def self.exit_on_failure?
+        true
+      end
+
       def copy_initializer
         template 'initializer.rb', 'config/initializers/solidus_frontend.rb'
       end
