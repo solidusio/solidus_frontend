@@ -14,6 +14,7 @@ module SolidusFrontend
       end
 
       def robots_directives
+        FileUtils.touch "public/robots.txt"
         append_file "public/robots.txt", <<-ROBOTS.strip_heredoc
           User-agent: *
           Disallow: /checkout
