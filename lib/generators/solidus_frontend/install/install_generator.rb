@@ -9,11 +9,16 @@ module SolidusFrontend
                    type: :boolean,
                    default: false
 
+      def self.exit_on_failure?
+        true
+      end
+
       def copy_initializer
         template 'initializer.rb', 'config/initializers/solidus_frontend.rb'
       end
 
       def robots_directives
+        FileUtils.touch "public/robots.txt"
         append_file "public/robots.txt", <<-ROBOTS.strip_heredoc
           User-agent: *
           Disallow: /checkout
