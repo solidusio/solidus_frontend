@@ -1,5 +1,11 @@
 # Changelog
 
+## Solidus 3.2.5 (v3.2, 2022-12-23)
+
+## Solidus 3.2.4 (v3.2, 2022-11-09)
+
+## Solidus 3.2.3 (v3.2, 2022-11-03)
+
 ## Solidus 3.2.2 (v3.2, 2022-09-09)
 
 -  Ask whether to add solidus_bolt during installation [#14](https://github.com/solidusio/solidus_frontend/pull/14) ([waiting-for-dev](https://github.com/waiting-for-dev))
