@@ -1,5 +1,7 @@
 # Changelog
 
+## Solidus v3.4.0 (v3.4, 2023-04-21)
+
 ## Solidus v3.3.0 (v3.3, 2023-01-24)
 
 - Fix CircleCI errors due to libvips not being found [#27](https://github.com/solidusio/solidus_frontend/pull/27) ([waiting-for-dev](https://github.com/waiting-for-dev))
