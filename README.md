@@ -2,11 +2,22 @@
 
 Frontend contains controllers and views implementing a storefront and cart for Solidus.
 
-## Warning
+## 🚧 Warning
+
+This gem is deprecated and no longer part of the Solidus recommended stack.
 
 For new Solidus apps, we recommend that you use
 [SolidusStarterFrontend](https://github.com/solidusio/solidus_starter_frontend)
 instead.
+
+This repository will only accept bug fixes and security patches for the
+branches that match supported versions of Solidus:
+
+| Branch                                                          | End of Life |
+| --------------------------------------------------------------- | ----------- |
+| [v3.4](https://github.com/solidusio/solidus_frontend/tree/v3.4) | 2024-10-21  |
+| [v3.3](https://github.com/solidusio/solidus_frontend/tree/v3.3) | 2024-07-24  |
+| [v3.2](https://github.com/solidusio/solidus_frontend/tree/v3.2) | 2024-02-18  |
 
 ## Override views
 
