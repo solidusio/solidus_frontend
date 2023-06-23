@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
+branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 
 git "https://github.com/solidusio/solidus.git", branch: branch do
   gem 'solidus_api'
