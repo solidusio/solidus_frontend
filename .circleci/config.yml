@@ -34,32 +34,32 @@ jobs:
       - checkout
       - browser-tools/install-chrome
       - libvips
-      - solidusio_extensions/run-tests-solidus-master
+      - solidusio_extensions/run-tests-solidus-main
 
 workflows:
-  "Run specs on Solidus master":
+  "Run specs on Solidus main":
     jobs:
       - run-specs:
-          name: &name "run-specs-solidus-master-ruby-<< matrix.ruby >>-db-<< matrix.db >>"
+          name: &name "run-specs-solidus-main-ruby-<< matrix.ruby >>-db-<< matrix.db >>"
           matrix:
             parameters: { ruby: ["3.2"], db: ["postgres"] }
       - run-specs:
-          name: &name "run-specs-solidus-master-ruby-<< matrix.ruby >>-db-<< matrix.db >>"
+          name: &name "run-specs-solidus-main-ruby-<< matrix.ruby >>-db-<< matrix.db >>"
           matrix:
             parameters: { ruby: ["3.1"], db: ["mysql"] }
       - run-specs:
-          name: &name "run-specs-solidus-master-ruby-<< matrix.ruby >>-db-<< matrix.db >>"
+          name: &name "run-specs-solidus-main-ruby-<< matrix.ruby >>-db-<< matrix.db >>"
           matrix:
             parameters: { ruby: ["3.0"], db: ["sqlite"] }
 
-  "Weekly run specs against master":
+  "Weekly run specs against main":
     triggers:
       - schedule:
           cron: "0 0 * * 4" # every Thursday
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - run-specs:
           name: *name
