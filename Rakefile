@@ -2,6 +2,7 @@
 
 require 'spree/testing_support/dummy_app/rake_tasks'
 require 'solidus_dev_support/rake_tasks'
+require 'bundler/gem_tasks'
 
 DummyApp::RakeTasks.new(
   gem_root: File.expand_path(__dir__),

@@ -216,3 +216,6 @@ coverage report:
 COVERAGE=true bundle exec rspec
 ```
 
+### Releasing new versions
+
+Please refer to the dedicated [page](https://github.com/solidusio/solidus/wiki/How-to-release-extensions) on Solidus wiki.
