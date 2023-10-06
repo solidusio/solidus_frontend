@@ -5,6 +5,8 @@ module Spree
     include Spree::Core::ControllerHelpers::Pricing
     include Spree::Core::ControllerHelpers::Order
 
+    respond_to :html
+
     def unauthorized
       render 'spree/shared/unauthorized', layout: Spree::Config[:layout], status: 401
     end
