@@ -9,12 +9,10 @@ end
 # from the project root directory.
 ENV["RAILS_ENV"] ||= 'test'
 
-require 'solidus_frontend'
-require 'spree/testing_support/dummy_app'
-DummyApp.setup(
-  gem_root: File.expand_path('..', __dir__),
-  lib_name: 'solidus_frontend'
-)
+# Create the dummy app if it's still missing.
+dummy_env = "#{__dir__}/dummy/config/environment.rb"
+system 'bin/rake extension:test_app' unless File.exist? dummy_env
+require dummy_env
 
 require 'rails-controller-testing'
 require 'rspec/rails'

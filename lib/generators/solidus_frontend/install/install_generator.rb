@@ -5,9 +5,7 @@ module SolidusFrontend
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('templates', __dir__)
 
-      class_option :auto_accept,
-                   type: :boolean,
-                   default: false
+      class_option :auto_accept, type: :boolean, default: false
 
       def self.exit_on_failure?
         true
