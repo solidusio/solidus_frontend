@@ -8,6 +8,9 @@ DummyApp::RakeTasks.new(
   lib_name: 'solidus_frontend'
 )
 
+require 'rake/clean'
+CLOBBER.include('spec/dummy')
+
 SolidusDevSupport::RakeTasks.install
 
 task default: 'extension:specs'
