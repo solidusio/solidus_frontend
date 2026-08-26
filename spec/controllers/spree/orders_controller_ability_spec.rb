@@ -19,19 +19,20 @@ module Spree
 
       before do
         allow(controller).to receive_messages current_order: order
+        cookies.signed[:guest_token] = token
       end
 
       context '#populate' do
         it 'should check if user is authorized for :update' do
           expect(controller).to receive(:authorize!).with(:update, order, token)
-          post :populate, params: { variant_id: variant.id, token: token }
+          post :populate, params: { variant_id: variant.id }
         end
       end
 
       context '#edit' do
         it 'should check if user is authorized for :edit' do
           expect(controller).to receive(:authorize!).with(:edit, order, token)
-          get :edit, params: { token: token }
+          get :edit
         end
       end
 
@@ -39,14 +40,14 @@ module Spree
         it 'should check if user is authorized for :update' do
           allow(order).to receive :update
           expect(controller).to receive(:authorize!).with(:update, order, token)
-          post :update, params: { order: { email: "foo@bar.com" }, token: token }
+          post :update, params: { order: { email: "foo@bar.com" } }
         end
       end
 
       context '#empty' do
         it 'should check if user is authorized for :update' do
           expect(controller).to receive(:authorize!).with(:update, order, token)
-          post :empty, params: { token: token }
+          post :empty
         end
       end
 
@@ -65,15 +66,15 @@ module Spree
 
       context '#show' do
         context 'when token parameter present' do
-          it 'always ooverride existing token when passing a new one' do
-            cookies.signed[:guest_token] = "soo wrong"
+          it 'authorizes the request against the supplied token' do
+            expect(controller).to receive(:authorize!).with(:show, kind_of(Spree::Order), order.guest_token)
             get :show, params: { id: 'R123', token: order.guest_token }
-            expect(cookies.signed[:guest_token]).to eq(order.guest_token)
           end
 
-          it 'should store as guest_token in session' do
+          it 'does not adopt the URL token as the guest_token cookie' do
+            cookies.signed[:guest_token] = 'existing-token'
             get :show, params: { id: 'R123', token: order.guest_token }
-            expect(cookies.signed[:guest_token]).to eq(order.guest_token)
+            expect(cookies.signed[:guest_token]).to eq('existing-token')
           end
         end
 
