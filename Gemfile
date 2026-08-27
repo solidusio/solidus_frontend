@@ -4,10 +4,11 @@ source 'https://rubygems.org'
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 
-git "https://github.com/solidusio/solidus.git", branch: branch do
-  gem 'solidus_api'
-  gem 'solidus_core'
-end
+# The storefront's promotion features build on the legacy promotion
+# system, which lives in the solidus_legacy_promotions gem since Solidus
+# 4.4, and its admin assets require solidus_backend, so we test against
+# the full solidus gem.
+gem 'solidus', git: "https://github.com/solidusio/solidus.git", branch: branch
 
 rails_version = ENV.fetch('RAILS_VERSION', '7.2')
 gem 'rails', "~> #{rails_version}"
