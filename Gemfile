@@ -9,7 +9,8 @@ git "https://github.com/solidusio/solidus.git", branch: branch do
   gem 'solidus_core'
 end
 
-gem 'rails', ENV.fetch('RAILS_VERSION', nil)
+rails_version = ENV.fetch('RAILS_VERSION', '7.2')
+gem 'rails', "~> #{rails_version}"
 
 # Temporarily locking sprockets to v3.x
 # see https://github.com/solidusio/solidus/issues/3374
@@ -22,7 +23,11 @@ when 'mysql'
 when 'postgresql'
   gem 'pg'
 else
-  gem 'sqlite3'
+  if rails_version <= "7.2"
+    gem 'sqlite3', "~> 1.7"
+  else
+    gem 'sqlite3', "~> 2.0"
+  end
 end
 
 gemspec
