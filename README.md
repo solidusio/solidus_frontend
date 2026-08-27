@@ -1,30 +1,30 @@
 # solidus\_frontend
 
-Frontend contains controllers and views implementing a storefront and cart for Solidus.
+Frontend contains controllers and views implementing a storefront and cart for
+Solidus.
 
 ## 🚧 Warning
 
-This gem is deprecated and no longer part of the Solidus recommended stack.
-
-For new Solidus apps, we recommend that you use
-[SolidusStarterFrontend](https://github.com/solidusio/solidus_starter_frontend)
+This gem is deprecated. New Solidus installations use
+[Solidus Storefront](https://github.com/solidusio/solidus/tree/main/storefront#readme)
 instead.
 
-This repository will only accept bug fixes and security patches for the
-branches that match supported versions of Solidus:
+This repository will only accept bug fixes and security patches for the branches
+that match supported versions of Solidus:
 
 | Branch                                                          | End of Life |
 | --------------------------------------------------------------- | ----------- |
-| [v3.4](https://github.com/solidusio/solidus_frontend/tree/v3.4) | 2024-10-21  |
-| [v3.3](https://github.com/solidusio/solidus_frontend/tree/v3.3) | 2024-07-24  |
-| [v3.2](https://github.com/solidusio/solidus_frontend/tree/v3.2) | 2024-02-18  |
+| [v4.7](https://github.com/solidusio/solidus_frontend/tree/v4.7) | 2027-10-08  |
+| [v4.6](https://github.com/solidusio/solidus_frontend/tree/v4.6) | 2027-03-03  |
 
 ## Override views
 
-In order to customize a view you should copy the file into your host app. Using Deface is not
-recommended as it provides lots of headaches while debugging and degrades your shops performance.
+In order to customize a view you should copy the file into your host app. Using
+Deface is not recommended as it provides lots of headaches while debugging and
+degrades your shops performance.
 
-Solidus provides a generator to help with copying the right view into your host app.
+Solidus provides a generator to help with copying the right view into your host
+app.
 
 Simply call the generator to copy all views into your host app.
 
@@ -32,27 +32,31 @@ Simply call the generator to copy all views into your host app.
 $ bundle exec rails g solidus:views:override
 ```
 
-If you only want to copy certain views into your host app, you can provide the `--only` argument:
+If you only want to copy certain views into your host app, you can provide the
+`--only` argument:
 
 ```bash
 $ bundle exec rails g solidus:views:override --only products/show
 ```
 
-The argument to `--only` can also be a substring of the name of the view from the `app/views/spree` folder:
+The argument to `--only` can also be a substring of the name of the view from
+the `app/views/spree` folder:
 
 ```bash
 $ bundle exec rails g solidus:views:override --only product
 ```
 
-This will copy all views whose directory or filename contains the string "product".
+This will copy all views whose directory or filename contains the string
+"product".
 
 ### Handle upgrades
 
-After upgrading Solidus to a new version run the generator again and follow on screen instructions.
+After upgrading Solidus to a new version run the generator again and follow on
+screen instructions.
 
 ## Developing Solidus Frontend
 
-* Clone the Git repo
+- Clone the Git repo
 
   ```bash
   git clone git://github.com/solidusio/solidus_frontend.git
@@ -61,13 +65,14 @@ After upgrading Solidus to a new version run the generator again and follow on s
 
 ### Without Docker
 
-* Install the gem dependencies
+- Install the gem dependencies
 
   ```bash
   bin/setup
   ```
 
-  _Note_: If you're using PostgreSQL or MySQL, you'll need to install those gems through the DB environment variable.
+  _Note_: If you're using PostgreSQL or MySQL, you'll need to install those gems
+  through the DB environment variable.
 
   ```bash
   # PostgreSQL
@@ -85,7 +90,8 @@ After upgrading Solidus to a new version run the generator again and follow on s
 docker-compose up -d
 ```
 
-Wait for all the gems to be installed (progress can be checked through `docker-compose logs -f app`).
+Wait for all the gems to be installed (progress can be checked through
+`docker-compose logs -f app`).
 
 You can provide the ruby version you want your image to use:
 
@@ -94,7 +100,8 @@ docker-compose build --build-arg RUBY_VERSION=2.6 app
 docker-compose up -d
 ```
 
-The rails version can be customized at runtime through `RAILS_VERSION` environment variable:
+The rails version can be customized at runtime through `RAILS_VERSION`
+environment variable:
 
 ```bash
 RAILS_VERSION='~> 5.0' docker-compose up -d
@@ -142,13 +149,14 @@ testing purposes.
 This sandbox includes solidus\_auth\_devise and generates with seed and sample
 data already loaded.
 
-* Create the sandbox application
+- Create the sandbox application
 
   ```bash
   bin/sandbox
   ```
 
-  You can create a sandbox with PostgreSQL or MySQL by setting the DB environment variable.
+  You can create a sandbox with PostgreSQL or MySQL by setting the DB
+  environment variable.
 
   ```bash
   # PostgreSQL
@@ -160,9 +168,9 @@ data already loaded.
   bin/sandbox
   ```
 
-  If you need to create a Rails 5.2 application for your sandbox, for example
-  if you are still using Ruby 2.4 which is not supported by Rails 6, you can
-  use the `RAILS_VERSION` environment variable.
+  If you need to create a Rails 5.2 application for your sandbox, for example if
+  you are still using Ruby 2.4 which is not supported by Rails 6, you can use
+  the `RAILS_VERSION` environment variable.
 
   ```bash
     export RAILS_VERSION='~> 5.2.0'
@@ -170,7 +178,7 @@ data already loaded.
     bin/sandbox
   ```
 
-* Start the server (`bin/rails` will forward any argument to the sandbox)
+- Start the server (`bin/rails` will forward any argument to the sandbox)
 
   ```bash
   bin/rails server
@@ -178,8 +186,8 @@ data already loaded.
 
 ### Tests
 
-Solidus uses [RSpec](http://rspec.info) for tests. Refer to its documentation for
-more information about the testing library.
+Solidus uses [RSpec](http://rspec.info) for tests. Refer to its documentation
+for more information about the testing library.
 
 #### CircleCI
 
@@ -218,4 +226,6 @@ COVERAGE=true bundle exec rspec
 
 ### Releasing new versions
 
-Please refer to the dedicated [page](https://github.com/solidusio/solidus/wiki/How-to-release-extensions) on Solidus wiki.
+Please refer to the dedicated
+[page](https://github.com/solidusio/solidus/wiki/How-to-release-extensions) on
+Solidus wiki.
