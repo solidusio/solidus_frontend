@@ -14,9 +14,8 @@ that match supported versions of Solidus:
 
 | Branch                                                          | End of Life |
 | --------------------------------------------------------------- | ----------- |
-| [v3.4](https://github.com/solidusio/solidus_frontend/tree/v3.4) | 2024-10-21  |
-| [v3.3](https://github.com/solidusio/solidus_frontend/tree/v3.3) | 2024-07-24  |
-| [v3.2](https://github.com/solidusio/solidus_frontend/tree/v3.2) | 2024-02-18  |
+| [v4.7](https://github.com/solidusio/solidus_frontend/tree/v4.7) | 2027-10-08  |
+| [v4.6](https://github.com/solidusio/solidus_frontend/tree/v4.6) | 2027-03-03  |
 
 ## Override views
 
