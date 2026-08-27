@@ -5,10 +5,8 @@ Solidus.
 
 ## 🚧 Warning
 
-This gem is deprecated and no longer part of the Solidus recommended stack.
-
-For new Solidus apps, we recommend that you use
-[SolidusStarterFrontend](https://github.com/solidusio/solidus_starter_frontend)
+This gem is deprecated. New Solidus installations use
+[Solidus Storefront](https://github.com/solidusio/solidus/tree/main/storefront#readme)
 instead.
 
 This repository will only accept bug fixes and security patches for the branches
