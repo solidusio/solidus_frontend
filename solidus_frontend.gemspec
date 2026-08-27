@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.metadata['rubygems_mfa_required'] = 'true'
   s.metadata['homepage_uri'] = s.homepage
   s.metadata['source_code_uri'] = 'https://github.com/solidusio/solidus_frontend'
-  s.metadata['changelog_uri'] = 'https://github.com/solidusio/solidus_frontend/blob/master/CHANGELOG.md'
+  s.metadata['changelog_uri'] = 'https://github.com/solidusio/solidus_frontend/releases'
 
   s.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(spec|script)/})
