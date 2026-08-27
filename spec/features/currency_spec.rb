@@ -13,6 +13,7 @@ describe "Switching currencies in backend", type: :feature do
     visit spree.root_path
     click_link "RoR Mug"
     click_button "Add To Cart"
+    expect(page).to have_current_path(spree.cart_path)
     # Now that we have an order...
     stub_spree_preferences(currency: "AUD")
     visit spree.root_path

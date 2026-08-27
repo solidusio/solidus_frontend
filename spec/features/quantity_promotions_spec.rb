@@ -22,6 +22,7 @@ RSpec.feature "Quantity Promotions", js: true do
     visit spree.root_path
     click_link "DL-44"
     click_button "Add To Cart"
+    expect(page).to have_current_path(spree.cart_path)
   end
 
   scenario "adding and removing items from the cart" do
@@ -46,7 +47,7 @@ RSpec.feature "Quantity Promotions", js: true do
     # Reduce quantity by 1, making promotion not apply.
     fill_in "order_line_items_attributes_0_quantity", with: 1
     click_button "Update"
-    expect(page).to_not have_content("#cart_adjustments")
+    expect(page).to have_no_css("#cart_adjustments")
 
     # Bump quantity to 3, making promotion apply "once."
     fill_in "order_line_items_attributes_0_quantity", with: 3
@@ -68,6 +69,7 @@ RSpec.feature "Quantity Promotions", js: true do
     # Bump quantity to 3
     fill_in "order_line_items_attributes_0_quantity", with: 3
     click_button "Update"
+    expect(page).to have_content("$59.97")
 
     # Apply the promo code and see a $10 discount (for 2 of the 3 items)
     fill_in "coupon_code", with: "PROMO"
@@ -82,6 +84,7 @@ RSpec.feature "Quantity Promotions", js: true do
     click_link "E-11"
     fill_in "quantity", with: "2"
     click_button "Add To Cart"
+    expect(page).to have_current_path(spree.cart_path)
 
     # We now have 5 items total, so discount should increase.
     within("#cart_adjustments") do
@@ -102,6 +105,7 @@ RSpec.feature "Quantity Promotions", js: true do
     scenario "odd number of changes to quantities" do
       fill_in "order_line_items_attributes_0_quantity", with: 3
       click_button "Update"
+      expect(page).to have_content("$59.97")
 
       # Apply the promo code and see a $15 discount
       fill_in "coupon_code", with: "PROMO"
@@ -115,6 +119,7 @@ RSpec.feature "Quantity Promotions", js: true do
       visit spree.root_path
       click_link "E-11"
       click_button "Add To Cart"
+      expect(page).to have_current_path(spree.cart_path)
       within("#cart_adjustments") do
         expect(page).to have_content("-$15.00")
       end

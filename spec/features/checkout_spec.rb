@@ -395,19 +395,24 @@ describe "Checkout", type: :feature, inaccessible: true do
       fill_in "order_email", with: "test@example.com"
       fill_in_address
       click_on "Save and Continue"
+      expect(page).to have_current_path(spree.checkout_state_path("delivery"))
       click_on "Save and Continue"
       expect(page).to have_current_path(spree.checkout_state_path("payment"))
 
       visit spree.root_path
       click_link bag.name
       click_button "add-to-cart-button"
+      expect(page).to have_current_path(spree.cart_path)
 
       click_on "Checkout"
       # edit an address field
       fill_in "order_bill_address_attributes_name", with: "Ryann Bigg"
       click_on "Save and Continue"
+      expect(page).to have_current_path(spree.checkout_state_path("delivery"))
       click_on "Save and Continue"
+      expect(page).to have_current_path(spree.checkout_state_path("payment"))
       click_on "Save and Continue"
+      expect(page).to have_current_path(spree.checkout_state_path("confirm"))
       click_on "Place Order"
 
       expect(page).to have_current_path(spree.order_path(Spree::Order.last))
@@ -433,6 +438,7 @@ describe "Checkout", type: :feature, inaccessible: true do
         end
 
         click_on "Update"
+        expect(page).to have_content("$59.97")
       end
 
       it "redirects user back to address step" do
@@ -442,7 +448,9 @@ describe "Checkout", type: :feature, inaccessible: true do
 
       it "updates shipments properly through step address -> delivery transitions" do
         visit spree.checkout_state_path("payment")
+        expect(page).to have_current_path(spree.checkout_state_path("address"))
         click_on "Save and Continue"
+        expect(page).to have_current_path(spree.checkout_state_path("delivery"))
         click_on "Save and Continue"
 
         expect(Spree::InventoryUnit.count).to eq 3
@@ -456,6 +464,7 @@ describe "Checkout", type: :feature, inaccessible: true do
         visit spree.root_path
         click_link bag.name
         click_button "add-to-cart-button"
+        expect(page).to have_current_path(spree.cart_path)
       end
 
       it "redirects user back to address step" do
@@ -465,7 +474,9 @@ describe "Checkout", type: :feature, inaccessible: true do
 
       it "updates shipments properly through step address -> delivery transitions" do
         visit spree.checkout_state_path("payment")
+        expect(page).to have_current_path(spree.checkout_state_path("address"))
         click_on "Save and Continue"
+        expect(page).to have_current_path(spree.checkout_state_path("delivery"))
         click_on "Save and Continue"
 
         expect(Spree::InventoryUnit.count).to eq 2
@@ -487,6 +498,7 @@ describe "Checkout", type: :feature, inaccessible: true do
       fill_in "order_email", with: "test@example.com"
       fill_in_address
       click_on "Save and Continue"
+      expect(page).to have_current_path(spree.checkout_state_path("delivery"))
 
       click_on "Save and Continue"
       expect(page).to have_current_path(spree.checkout_state_path("payment"))
@@ -545,7 +557,7 @@ describe "Checkout", type: :feature, inaccessible: true do
       fill_in_credit_card
       click_button "Save and Continue"
 
-      expect(current_path).to eq spree.checkout_state_path('confirm')
+      expect(page).to have_current_path(spree.checkout_state_path('confirm'))
       click_button "Place Order"
     end
   end
@@ -615,6 +627,7 @@ describe "Checkout", type: :feature, inaccessible: true do
       before do
         canada.states.destroy_all
         zone.members.create!(zoneable: canada)
+        shipping_method.zones.first.members.create!(zoneable: canada)
       end
 
       it "displays the entered state name without evaluating" do
@@ -630,6 +643,7 @@ describe "Checkout", type: :feature, inaccessible: true do
         fill_in "Zip", with: "H0H0H0"
 
         click_on 'Save and Continue'
+        expect(page).to have_current_path(spree.checkout_state_path(:delivery))
         visit spree.checkout_state_path(:address)
 
         expect(page).to have_field(state_name_css, with: xss_string)
@@ -717,14 +731,17 @@ describe "Checkout", type: :feature, inaccessible: true do
       it 'transitions successfully to the delivery step', js: true do
         visit spree.product_path(first_product)
         click_button 'add-to-cart-button'
+        expect(page).to have_current_path(spree.cart_path)
         visit spree.product_path(second_product)
         click_button 'add-to-cart-button'
+        expect(page).to have_current_path(spree.cart_path)
 
         click_button 'Checkout'
 
         fill_in_address
         fill_in 'order_email', with: 'test@example.com'
         click_button 'Save and Continue'
+        expect(page).to have_current_path(spree.checkout_state_path(:delivery))
 
         expect(Spree::Order.last.state).to eq('delivery')
       end
@@ -753,5 +770,9 @@ describe "Checkout", type: :feature, inaccessible: true do
     visit spree.root_path
     click_link mug.name
     click_button "add-to-cart-button"
+
+    # The browser submits the add-to-cart form asynchronously, so wait for
+    # the redirect to the cart before moving on.
+    expect(page).to have_current_path(spree.cart_path)
   end
 end
