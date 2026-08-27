@@ -42,7 +42,6 @@ Capybara.save_path = ENV['CIRCLE_ARTIFACTS'] if ENV['CIRCLE_ARTIFACTS']
 Capybara.default_max_wait_time = ENV['DEFAULT_MAX_WAIT_TIME'].to_f if ENV['DEFAULT_MAX_WAIT_TIME'].present?
 
 require "selenium/webdriver"
-require 'webdrivers'
 Capybara.register_driver :selenium_chrome_headless_docker_friendly do |app|
   browser_options = ::Selenium::WebDriver::Chrome::Options.new
   browser_options.args << '--headless'
@@ -68,7 +67,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.fixture_path = File.join(__dir__, "fixtures")
+  config.fixture_paths = [File.join(__dir__, "fixtures")]
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, comment the following line or assign false
