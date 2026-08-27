@@ -7,12 +7,12 @@ Gem::Specification.new do |s|
   s.name        = 'solidus_frontend'
   s.version     = Spree::Frontend.version
 
-  s.summary     = <<~SUMMARY
-    Legacy cart and storefront for the Solidus e-commerce project.
-    For new Solidus apps, we recommend that you use
-    [SolidusStarterFrontend](https://github.com/solidusio/solidus_starter_frontend)
-    instead.
+  s.summary = <<~SUMMARY
+    Legacy storefront for the Solidus e-commerce platform. New Solidus
+    installations use Solidus Storefront:
+    https://github.com/solidusio/solidus/tree/main/storefront#readme
   SUMMARY
+
 
   s.description = s.summary
 
