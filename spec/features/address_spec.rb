@@ -13,6 +13,7 @@ describe "Address", type: :feature, inaccessible: true do
 
     click_link "RoR Mug"
     click_button "add-to-cart-button"
+    expect(page).to have_current_path(spree.cart_path)
 
     address = "order_bill_address_attributes"
     @country_css = "#{address}_country_id"

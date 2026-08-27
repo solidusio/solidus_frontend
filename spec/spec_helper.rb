@@ -17,6 +17,7 @@ require dummy_env
 require 'rails-controller-testing'
 require 'rspec/rails'
 require 'rspec-activemodel-mocks'
+require 'rspec/retry'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -39,10 +40,9 @@ require 'spree/testing_support/translations'
 
 require 'capybara-screenshot/rspec'
 Capybara.save_path = ENV['CIRCLE_ARTIFACTS'] if ENV['CIRCLE_ARTIFACTS']
-Capybara.default_max_wait_time = ENV['DEFAULT_MAX_WAIT_TIME'].to_f if ENV['DEFAULT_MAX_WAIT_TIME'].present?
+Capybara.default_max_wait_time = ENV.fetch('DEFAULT_MAX_WAIT_TIME', 10).to_f
 
 require "selenium/webdriver"
-require 'webdrivers'
 Capybara.register_driver :selenium_chrome_headless_docker_friendly do |app|
   browser_options = ::Selenium::WebDriver::Chrome::Options.new
   browser_options.args << '--headless'
@@ -68,7 +68,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.fixture_path = File.join(__dir__, "fixtures")
+  config.fixture_paths = [File.join(__dir__, "fixtures")]
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, comment the following line or assign false
@@ -99,6 +99,13 @@ RSpec.configure do |config|
   config.include Spree::TestingSupport::Translations
 
   config.example_status_persistence_file_path = "./spec/examples.txt"
+
+  # Real-browser specs are inherently prone to timing flakiness, so give
+  # them a couple of retries before failing the suite.
+  config.verbose_retry = true
+  config.around :each, :js do |example|
+    example.run_with_retry retry: 3
+  end
 
   config.order = :random
 

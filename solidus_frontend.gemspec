@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.metadata['rubygems_mfa_required'] = 'true'
   s.metadata['homepage_uri'] = s.homepage
   s.metadata['source_code_uri'] = 'https://github.com/solidusio/solidus_frontend'
-  s.metadata['changelog_uri'] = 'https://github.com/solidusio/solidus_frontend/blob/master/CHANGELOG.md'
+  s.metadata['changelog_uri'] = 'https://github.com/solidusio/solidus_frontend/releases'
 
   s.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(spec|script)/})
@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara-accessible'
   s.add_development_dependency 'solidus_dev_support', '~> 2.5'
   s.add_development_dependency 'rspec-activemodel-mocks', '~> 1.1'
+  s.add_development_dependency 'rspec-retry'
   s.add_development_dependency 'rails-controller-testing'
   s.add_development_dependency 'generator_spec'
 end

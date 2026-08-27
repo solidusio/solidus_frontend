@@ -20,10 +20,12 @@ RSpec.feature "Promotion Code Invalidation", js: true do
     visit spree.root_path
     click_link "DL-44"
     click_button "Add To Cart"
+    expect(page).to have_current_path(spree.cart_path)
 
     visit spree.root_path
     click_link "E-11"
     click_button "Add To Cart"
+    expect(page).to have_current_path(spree.cart_path)
   end
 
   scenario "adding the promotion to a cart with two applicable items" do

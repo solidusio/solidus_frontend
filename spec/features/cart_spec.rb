@@ -16,6 +16,7 @@ describe "Cart", type: :feature, inaccessible: true do
     visit spree.root_path
     click_link "RoR Mug"
     click_button "add-to-cart-button"
+    expect(page).to have_current_path(spree.cart_path)
 
     # prevent form submit to verify button is disabled
     page.execute_script("$('#update-cart').submit(function(){return false;})")
@@ -38,6 +39,7 @@ describe "Cart", type: :feature, inaccessible: true do
     visit spree.root_path
     click_link "RoR Mug"
     click_button "add-to-cart-button"
+    expect(page).to have_current_path(spree.cart_path)
     find('.cart-item-delete .delete').click
     expect(page).not_to have_content("Line items quantity must be an integer")
     expect(page).not_to have_content("RoR Mug")
@@ -53,6 +55,7 @@ describe "Cart", type: :feature, inaccessible: true do
     visit spree.root_path
     click_link "RoR Mug"
     click_button "add-to-cart-button"
+    expect(page).to have_current_path(spree.cart_path)
 
     expect(page).to have_content("RoR Mug")
     click_on "Empty Cart"
@@ -73,6 +76,7 @@ describe "Cart", type: :feature, inaccessible: true do
     it "still adds product to cart", inaccessible: true do
       visit spree.product_path(product)
       click_button "add-to-cart-button"
+      expect(page).to have_current_path(spree.cart_path)
 
       visit spree.cart_path
       expect(page).to have_content(product.name)

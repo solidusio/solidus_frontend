@@ -40,6 +40,7 @@ describe "Coupon code promotions", type: :feature, js: true do
           visit spree.root_path
           click_link "RoR Mug"
           click_button "add-to-cart-button"
+          expect(page).to have_current_path(spree.cart_path)
           click_button "Checkout"
           fill_in "order_email", with: "solidus@example.com"
           fill_in "Name", with: "John Smith"
@@ -100,6 +101,7 @@ describe "Coupon code promotions", type: :feature, js: true do
             visit spree.root_path
             click_link "RoR Mug"
             click_button "add-to-cart-button"
+            expect(page).to have_current_path(spree.cart_path)
             # To Cart
             click_button "Checkout"
             # To shipping method screen, address is auto-populated
@@ -126,6 +128,7 @@ describe "Coupon code promotions", type: :feature, js: true do
         visit spree.root_path
         click_link "RoR Mug"
         click_button "add-to-cart-button"
+        expect(page).to have_current_path(spree.cart_path)
       end
 
       it "can enter a coupon code and receives success notification" do
@@ -188,10 +191,12 @@ describe "Coupon code promotions", type: :feature, js: true do
           visit spree.root_path
           click_link "Spree Mug"
           click_button "add-to-cart-button"
+          expect(page).to have_current_path(spree.cart_path)
 
           visit spree.cart_path
           fill_in "coupon_code", with: "onetwo"
           click_button "Apply Code"
+          expect(page).to have_content("The coupon code was successfully applied to your order")
 
           fill_in "order_line_items_attributes_0_quantity", with: 2
           fill_in "order_line_items_attributes_1_quantity", with: 2
@@ -229,6 +234,7 @@ describe "Coupon code promotions", type: :feature, js: true do
           visit spree.root_path
           click_link "Spree Mug"
           click_button "add-to-cart-button"
+          expect(page).to have_current_path(spree.cart_path)
 
           visit spree.cart_path
 

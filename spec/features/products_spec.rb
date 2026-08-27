@@ -133,6 +133,7 @@ describe "Visiting Products", type: :feature, inaccessible: true do
       it "when adding a product to the cart", js: true do
         visit spree.product_path(product)
         click_button "Add To Cart"
+        expect(page).to have_current_path(spree.cart_path)
         click_link "Home"
         within(".cart-info") do
           expect(page).to have_content("19.99 ₽")

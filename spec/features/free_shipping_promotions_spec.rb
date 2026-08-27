@@ -32,6 +32,7 @@ describe "Free shipping promotions", type: :feature, js: true do
       visit spree.root_path
       click_link "RoR Mug"
       click_button "add-to-cart-button"
+      expect(page).to have_current_path(spree.cart_path)
       click_button "Checkout"
       fill_in "order_email", with: "solidus@example.com"
       fill_in "Name", with: "John Smith"

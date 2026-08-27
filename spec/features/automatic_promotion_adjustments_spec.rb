@@ -35,6 +35,7 @@ describe "Automatic promotions", type: :feature, js: true do
       visit spree.root_path
       click_link product.name
       click_button "add-to-cart-button"
+      expect(page).to have_current_path(spree.cart_path)
     end
 
     it "automatically applies the promotion once the order crosses the threshold" do
