@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
+branch = ENV.fetch('SOLIDUS_BRANCH', 'v4.7')
 
 # The storefront's promotion features build on the legacy promotion
 # system, which lives in the solidus_legacy_promotions gem since Solidus
