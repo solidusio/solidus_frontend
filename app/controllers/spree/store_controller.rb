@@ -8,7 +8,7 @@ module Spree
     respond_to :html
 
     def unauthorized
-      render 'spree/shared/unauthorized', layout: Spree::Config[:layout], status: 401
+      render 'spree/shared/unauthorized', layout: Spree::Config.layout, status: 401
     end
 
     def cart_link
@@ -19,7 +19,7 @@ module Spree
     private
 
     def config_locale
-      Spree::Frontend::Config[:locale]
+      Spree::Frontend::Config.locale
     end
 
     def lock_order
