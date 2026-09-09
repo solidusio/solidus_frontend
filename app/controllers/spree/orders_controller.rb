@@ -6,14 +6,13 @@ module Spree
 
     respond_to :html
 
-    before_action :store_guest_token
     before_action :assign_order, only: :update
     # note: do not lock the #edit action because that's where we redirect when we fail to acquire a lock
     around_action :lock_order, only: :update
 
     def show
       @order = Spree::Order.find_by!(number: params[:id])
-      authorize! :show, @order, cookies.signed[:guest_token]
+      authorize! :show, @order, params[:token] || cookies.signed[:guest_token]
     end
 
     def update
@@ -101,10 +100,6 @@ module Spree
     end
 
     private
-
-    def store_guest_token
-      cookies.permanent.signed[:guest_token] = params[:token] if params[:token]
-    end
 
     def order_params
       if params[:order]
