@@ -8,7 +8,11 @@ module Spree
     include TruncateHtmlHelper
 
     def truncated_product_description(product)
-      truncate_html(raw(product.description))
+      if Spree::Config.show_raw_product_description
+        truncate_html(raw(product.description))
+      else
+        truncate_html(sanitize(product.description))
+      end
     end
 
     def order_just_completed?(order)
