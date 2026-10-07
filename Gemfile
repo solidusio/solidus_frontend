@@ -13,6 +13,9 @@ gem 'solidus', git: "https://github.com/solidusio/solidus.git", branch: branch
 rails_version = ENV.fetch('RAILS_VERSION', '7.2')
 gem 'rails', "~> #{rails_version}"
 
+# json 3 is incompatible with Rails < 8.1.
+gem 'json', '< 3', require: false
+
 # Temporarily locking sprockets to v3.x
 # see https://github.com/solidusio/solidus/issues/3374
 # and https://github.com/rails/sprockets-rails/issues/369
