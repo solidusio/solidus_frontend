@@ -2,7 +2,7 @@
 
 module Spree
   module Frontend
-    VERSION = "4.8.0"
+    VERSION = "4.9.0.dev"
 
     def self.version
       VERSION
