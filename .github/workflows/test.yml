@@ -21,5 +21,5 @@ jobs:
     uses: solidusio/test-solidus-extension/.github/workflows/test.yml@main
     with:
       rails_versions: '["8.0.0"]'
-      solidus_branches: '["v4.7", "v4.6"]'
-      ruby_versions: '["3.2", "3.4"]'
+      solidus_branches: '["v4.8", "v4.7", "v4.6"]'
+      ruby_versions: '["3.2", "3.4", "4.0"]'
