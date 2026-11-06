@@ -14,6 +14,12 @@ module Spree
       config.after_initialize do
         Spree::Frontend::Config.check_load_defaults_called('Spree::Frontend::Config')
       end
+
+      initializer "canonical_rails.add_helpers" do |app|
+        ActiveSupport.on_load(:action_view) do
+          self.include CanonicalRails::TagHelper
+        end
+      end
     end
   end
 end

@@ -36,7 +36,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'solidus_api', '>= 3.2.0.alpha'
   s.add_dependency 'solidus_core', '>= 3.2.0.alpha'
 
-  s.add_dependency 'canonical-rails', '~> 0.2.10'
   s.add_dependency 'font-awesome-rails', '~> 4.0'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'kaminari', '~> 1.1'
