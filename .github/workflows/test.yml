@@ -18,8 +18,16 @@ permissions:
 
 jobs:
   test:
+    strategy:
+      fail-fast: false
+      matrix:
+        rails_version: ["8.0.0", "8.1.4"]
+        solidus_branch: ["v4.8", "v4.7", "v4.6"]
+        exclude:
+          - solidus_branch: "v4.6"
+            rails_version: "8.1.4"
     uses: solidusio/test-solidus-extension/.github/workflows/test.yml@main
     with:
-      rails_versions: '["8.0.0"]'
-      solidus_branches: '["v4.8", "v4.7", "v4.6"]'
+      rails_versions: '["${{ matrix.rails_version }}"]'
+      solidus_branches: '["${{ matrix.solidus_branch }}"]'
       ruby_versions: '["3.2", "3.4", "4.0"]'
